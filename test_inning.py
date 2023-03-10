@@ -27,36 +27,34 @@ def player_has_assignment(player, assignments):
 
 
 class MyTestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        self.players = player_factory.generate_full_cardinals()
+        self.inning = Inning(self.players.copy())
+        self.assignments = self.inning.assignments
+
     def test_all_positions_covered_on_inning_creation(self):
-        players = player_factory.generate_full_cardinals()
-        inning = Inning(players)
-        assignments = {assg.position: assg.player for assg in
-            inning.assignments}
+        assignments_dict = {assignment.position: assignment.player
+            for assignment
+            in self.assignments}
 
         for position in StandardPosition:
-            self.assertTrue(position.value in assignments.keys())
+            self.assertTrue(position.value in assignments_dict.keys())
 
-            player_at_position = assignments[position.value]
+            player_at_position = assignments_dict[position.value]
             self.assertIsNotNone(player_at_position)
 
     def test_all_players_assigned_to_position_and_bench(self):
-        players = player_factory.generate_full_cardinals()
-        inning = Inning(players.copy())
-        assignments = inning.assignments
-
         assigned_players = set(
-            [assignment.player for assignment in assignments]
+            [assignment.player for assignment in self.assignments]
         )
-        self.assertEqual(len(players), len(assigned_players))
+        self.assertEqual(len(self.players), len(assigned_players))
 
-        benched_players = collect_benched_players(inning)
+        benched_players = collect_benched_players(self.inning)
         self.assertEqual(4, len(benched_players))
 
     def test_players_assign_to_fielder_group(self):
-        players = player_factory.generate_full_cardinals()
-        inning = Inning(players)
         non_bench_assignments = [
-            assignment for assignment in inning.assignments
+            assignment for assignment in self.assignments
             if assignment.position.title != 'Bench'
         ]
 

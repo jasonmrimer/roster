@@ -9,15 +9,12 @@ class Assignment:
 
 def bench_remaining(players, assignments):
     bench_position = Position(
-        title="Bench", number=0, field_group=FieldGroup.BE
+        title="Bench", number=0, field_group=FieldGroup.BE, shorthand="B"
     )
-    print(len(players))
+
     for player in players:
         assignments.append(
-            Assignment(
-                player=player,
-                position=bench_position
-            )
+            Assignment(player=player, position=bench_position)
         )
 
 
@@ -27,23 +24,23 @@ class Inning:
         bench_remaining(players, self.assignments)
 
     def __str__(self):
-        printable = format_inning(self)
-        return printable
+        return format_inning(self)
 
 
 def match_available_player(position, unassigned_players):
     for i in range(0, len(unassigned_players)):
-        if unassigned_players[i].field_group == position.value.field_group:
+        if field_group_matches(i, position, unassigned_players[i]):
             return unassigned_players.pop(i)
+
+
+def field_group_matches(i, position, player):
+    return player.field_group == position.value.field_group
 
 
 def assign_positions(players):
     assignments = []
-    players
     for position in StandardPosition:
-        available_player_match = match_available_player(
-            position, players
-        )
+        available_player_match = match_available_player(position, players)
         if available_player_match:
             assignment = Assignment(
                 position=position.value,
@@ -56,6 +53,6 @@ def assign_positions(players):
 
 def format_inning(inning):
     printable = ""
-    for position in inning.assignments:
-        printable += f"{position.name} :  {inning.assignments[position]}\n"
+    for asssignment in inning.assignments:
+        printable += f"{asssignment.player.name} :  {asssignment.position.shorthand}\n"
     return printable

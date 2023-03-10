@@ -7,17 +7,10 @@ import roster_creator
 from positional_data import StandardPosition
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-    print(StandardPosition)
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print(f'Let\'s go, Cardinals!')
     players = player_factory.generate_full_cardinals()
     inning = roster_creator.Inning(players)
     print(inning)
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
