@@ -4,6 +4,7 @@ from enum import Enum
 class FieldGroup:
     OF = 'outfield'
     IF = 'infield'
+    BE = 'bench'
 
 
 class Position:

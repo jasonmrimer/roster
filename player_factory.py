@@ -9,7 +9,7 @@ class Player:
     def __str__(self):
         return f"{self.name}"
 
-def generate():
+def generate_full_cardinals():
     players = [
         Player('Aziel', FieldGroup.OF),
         Player('Carter', FieldGroup.IF),

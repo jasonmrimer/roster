@@ -7,7 +7,7 @@ from positional_data import StandardPosition
 
 class MyTestCase(unittest.TestCase):
     def test_all_player_JSON(self):
-        players = player_factory.generate()
+        players = player_factory.generate_full_cardinals()
         roster = roster_creator.create(
             players=players,
             inning_count=6

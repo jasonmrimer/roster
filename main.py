@@ -11,7 +11,7 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
     print(StandardPosition)
-    players = player_factory.generate()
+    players = player_factory.generate_full_cardinals()
     inning = roster_creator.Inning(players)
     print(inning)
 
