@@ -11,6 +11,6 @@ from positional_data import StandardPosition
 if __name__ == '__main__':
     print(f'Let\'s go, Cardinals!')
     players = player_factory.generate_full_cardinals()
-    inning = roster_creator.Inning(players)
-    print(inning)
+    roster = roster_creator.Roster(players, 6)
+    print(roster)
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

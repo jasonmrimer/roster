@@ -20,8 +20,9 @@ def bench_remaining(players, assignments):
 
 class Inning:
     def __init__(self, players):
-        self.assignments = assign_positions(players)
-        bench_remaining(players, self.assignments)
+        self.players = players.copy()
+        self.assignments = assign_positions(self.players)
+        bench_remaining(self.players, self.assignments)
 
     def __str__(self):
         return format_inning(self)
