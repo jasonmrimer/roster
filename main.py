@@ -2,11 +2,18 @@
 
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import player_factory
+import roster_creator
+from positional_data import StandardPosition
 
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+    print(StandardPosition)
+    players = player_factory.generate()
+    inning = roster_creator.Inning(players)
+    print(inning)
 
 
 # Press the green button in the gutter to run the script.

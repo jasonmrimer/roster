@@ -1,3 +1,8 @@
+from enum import Enum
+
+from inning_creator import Inning
+
+
 def create(players, inning_count):
     innings = []
     for i in range(0, inning_count):
@@ -8,7 +13,3 @@ def create(players, inning_count):
 class Roster():
     def __init__(self, innings):
         self.innings = innings
-
-class Inning:
-    def __init__(self, players):
-        self.players = players
