@@ -34,23 +34,17 @@ class MyTestCase(unittest.TestCase):
                     was_benched_previous = False
 
     def test_list_rearrange(self):
-        selected_player_1 = self.players[4]
-        selected_player_2 = self.players[5]
-        selected_player_3 = self.players[8]
-        selected_player_4 = self.players[13]
         select_players = [
-            selected_player_1,
-            selected_player_2,
-            selected_player_3,
-            selected_player_4,
+            self.players[4],
+            self.players[5],
+            self.players[8],
+            self.players[13],
         ]
 
         top_four_players = self.players[:4]
         self.assertEqual(14, len(self.players))
-        self.assertFalse(selected_player_1 in top_four_players)
-        self.assertFalse(selected_player_2 in top_four_players)
-        self.assertFalse(selected_player_3 in top_four_players)
-        self.assertFalse(selected_player_4 in top_four_players)
+        for i in range(0, len(select_players)):
+            self.assertFalse(select_players[i] in top_four_players)
 
         roster_creator.move_select_players_to_top(
             select_players,
@@ -58,12 +52,26 @@ class MyTestCase(unittest.TestCase):
         )
 
         top_four_players = self.players[:4]
-        print(top_four_players)
         self.assertEqual(14, len(self.players))
-        self.assertTrue(selected_player_1 in top_four_players)
-        self.assertTrue(selected_player_2 in top_four_players)
-        self.assertTrue(selected_player_3 in top_four_players)
-        self.assertTrue(selected_player_4 in top_four_players)
+        for i in range(0, len(select_players)):
+            self.assertTrue(select_players[i] in top_four_players)
+
+    def test_all_players_max_bench_2_innings(self):
+        players_over_max_bench = []
+        for player in self.players:
+            assignments = self.roster.assignments_by_player[player]
+            bench_assignments = [
+                position for position in assignments if
+                position.shorthand == 'B']
+            if len(bench_assignments) > 2:
+                players_over_max_bench.append(player)
+
+        self.assertEqual(
+            len(players_over_max_bench),
+            0,
+            msg=f'{len(players_over_max_bench)} players sat more 2 innings'
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

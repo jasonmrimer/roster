@@ -11,7 +11,8 @@ def move_select_players_to_top(select_players, players):
 
 
 def extract_benched_players(inning):
-    benched_players = [assignment.player for assignment in inning.assignments if
+    benched_players = [assignment.player for assignment in inning.assignments
+        if
         assignment.position.title == 'Bench']
     return benched_players
 
@@ -26,24 +27,38 @@ def create_innings(self, players, inning_count):
     return innings
 
 
-def format(self):
+def format_csv(self):
     formatted_dict = dict()
     for player in self.players:
         formatted_dict[player.name] = ''
     for inning in self.innings:
         for assignment in inning.assignments:
-            formatted_dict[assignment.player.name] += (f',{assignment.position.shorthand}')
+            formatted_dict[assignment.player.name] += (
+                f',{assignment.position.shorthand}')
     print(formatted_dict)
     return formatted_dict
+
+
+def create_player_dictionary(self):
+    player_assignments = {}
+    for player in self.players:
+        player_assignments[player] = []
+    for inning in self.innings:
+        for assignment in inning.assignments:
+            player_assignments[assignment.player].append(
+                assignment.position
+            )
+    return player_assignments
 
 
 class Roster():
     def __init__(self, players, inning_count):
         self.players = players
         self.innings = create_innings(self, self.players, inning_count)
+        self.assignments_by_player = create_player_dictionary(self)
 
     def __str__(self):
-        formatted_dict = format(self)
+        formatted_dict = format_csv(self)
         formatted_roster = f''
         for player in formatted_dict.keys():
             formatted_roster += f'\n{player},{formatted_dict[player]}'
