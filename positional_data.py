@@ -17,7 +17,7 @@ class Position:
 
 class StandardPosition(Enum):
     _P = Position("pitcher", 1, FieldGroup.IF, "P")
-    _C = Position("catcher", 2, FieldGroup.IF, "C")
+    _C = Position("catcher", 2, FieldGroup.OF, "C")
     _1B = Position("first base", 3, FieldGroup.IF, "1B")
     _2B = Position("second base", 4, FieldGroup.IF, "2B")
     _SS = Position("short stop", 6, FieldGroup.IF, "SS")
