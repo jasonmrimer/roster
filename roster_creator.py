@@ -57,6 +57,7 @@ class Roster():
         self.innings = create_innings(self, self.players, inning_count)
         self.assignments_by_player = create_player_dictionary(self)
 
+    # todo refactor this to utilize the player_assignments collection
     def __str__(self):
         formatted_dict = format_csv(self)
         formatted_roster = f''

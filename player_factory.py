@@ -5,6 +5,8 @@ class Player:
     def __init__(self, name, field_group):
         self.name = name
         self.field_group = field_group
+        self.bench_count = 0
+        self.consecutive_innings = 0
 
     def __str__(self):
         return f"{self.name}"

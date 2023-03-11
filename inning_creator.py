@@ -1,3 +1,4 @@
+from player_factory import Player
 from positional_data import StandardPosition, Position, FieldGroup
 
 
@@ -40,6 +41,8 @@ def field_group_matches(i, position, player):
 
 def assign_positions(players):
     assignments = []
+    assignments.sort()
+    players.sort(key=lambda player: player.consecutive_innings)
     for position in StandardPosition:
         available_player_match = match_available_player(position, players)
         if available_player_match:
@@ -48,6 +51,7 @@ def assign_positions(players):
                 player=available_player_match
             )
             assignments.append(assignment)
+            available_player_match.consecutive_innings += 1
 
     return assignments
 
