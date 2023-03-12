@@ -1,5 +1,3 @@
-from enum import Enum
-
 from inning_creator import Inning
 
 
@@ -30,12 +28,11 @@ def create_innings(self, players, inning_count):
 def format_csv(self):
     formatted_dict = dict()
     for player in self.players:
-        formatted_dict[player.name] = ''
+        formatted_dict[player.name] = f'{player.field_group}'
     for inning in self.innings:
         for assignment in inning.assignments:
             formatted_dict[assignment.player.name] += (
                 f',{assignment.position.shorthand}')
-    print(formatted_dict)
     return formatted_dict
 
 

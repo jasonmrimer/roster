@@ -7,10 +7,21 @@ import roster_creator
 from positional_data import StandardPosition
 
 
-# Press the green button in the gutter to run the script.
+def request_missing_players():
+    players = player_factory.generate_full_cardinals()
+    name_list = ''
+    for player in players:
+        name_list += f' | {player.name}'
+    missing_player_raw_input = input(
+        f'Which players will miss the game? \n'
+        f'Player names: {name_list}\n'
+        f'Enter names separated by commas: '
+    )
+    return player_factory.generate_available_players(missing_player_raw_input)
+
+
 if __name__ == '__main__':
     print(f'Let\'s go, Cardinals!')
-    players = player_factory.generate_full_cardinals()
+    players = request_missing_players()
     roster = roster_creator.Roster(players, 6)
     print(roster)
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class FieldGroup:
-    OF = 'outfield'
-    IF = 'infield'
+    OF = 'OF'
+    IF = 'IF'
     BE = 'bench'
 
 
