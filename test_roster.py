@@ -8,8 +8,7 @@ class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.players = player_factory.generate_full_cardinals()
         self.roster = roster_creator.Roster(
-            players=self.players.copy(),
-            inning_count=6
+            players=self.players.copy(), inning_count=6, is_shuffled=False
         )
 
     def test_all_innings_created(self):

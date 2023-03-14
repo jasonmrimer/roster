@@ -47,12 +47,13 @@ def format_raw_input(raw_input):
 
 
 def generate_available_players(raw_input):
-    missing_players = format_raw_input(raw_input)
     available_players = generate_full_cardinals()
-    if len(missing_players) < 1:
+
+    if len(raw_input) < 1:
         return available_players
+
+    missing_players = format_raw_input(raw_input)
     for name in missing_players:
         player = next((p for p in available_players if p.name.lower() == name), None)
         available_players.remove(player)
-
     return available_players

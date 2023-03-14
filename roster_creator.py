@@ -1,3 +1,5 @@
+import random
+
 from inning_creator import Inning
 
 
@@ -15,9 +17,11 @@ def extract_benched_players(inning):
     return benched_players
 
 
-def create_innings(self, players, inning_count):
+def create_innings(self, players, inning_count, is_shuffled):
     innings = []
     for i in range(0, inning_count):
+        if is_shuffled:
+            players = random.shuffle(players)
         inning = Inning(players)
         innings.append(inning)
         benched_players = extract_benched_players(inning)
@@ -49,9 +53,9 @@ def create_player_dictionary(self):
 
 
 class Roster():
-    def __init__(self, players, inning_count):
+    def __init__(self, players, inning_count, is_shuffled):
         self.players = players
-        self.innings = create_innings(self, self.players, inning_count)
+        self.innings = create_innings(self, self.players, inning_count, False)
         self.assignments_by_player = create_player_dictionary(self)
 
     # todo refactor this to utilize the player_assignments collection

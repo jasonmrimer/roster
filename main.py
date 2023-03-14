@@ -23,5 +23,6 @@ def request_missing_players():
 if __name__ == '__main__':
     print(f'Let\'s go, Cardinals!')
     players = request_missing_players()
-    roster = roster_creator.Roster(players, 6)
+    # roster = roster_creator.Roster(players, 6, False)
+    roster = roster_creator.Roster(players, 6, is_shuffled=True)
     print(roster)
